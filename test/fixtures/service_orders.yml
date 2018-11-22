@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  service_type: MyString
+  final_term: 2018-11-19 03:43:37
+  description: MyText
+  user_type: MyString
+  user: one
+
+two:
+  service_type: MyString
+  final_term: 2018-11-19 03:43:37
+  description: MyText
+  user_type: MyString
+  user: two

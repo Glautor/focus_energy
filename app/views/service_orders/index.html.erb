@@ -1,0 +1,127 @@
+
+<h1>Ordens de Serviço</h1>
+
+<%= link_to "Nova Ordem de Serviço", new_service_order_path, class:"btn btn-block btn-primary", style:"width:200px; color:white" %>
+<div class="row">
+<p id="notice"><%= notice %></p>
+<% if admin_signed_in? %>
+    <% @service_orders.each do |service_order| %>
+        <div class="col-md-12">
+          <div class="box box-primary">
+            <!-- /.box-header -->
+            <div class="box-body">
+              <strong><i class="fa fa-book margin-r-5"></i> Tipo de Serviço </strong>
+
+              <p class="text-muted">
+                <%= service_order.service_type %>
+              </p>
+
+              <hr>
+
+              <strong><i class="fa fa-user"></i> Técnico </strong>
+              <% if service_order.user %>
+              <p><%= service_order.user.name %></p>
+              <% end %>
+
+              <hr>
+
+              <strong><i class="fa fa-map-marker margin-r-5"></i> Localização </strong>
+
+              <p class="text-muted"><%= service_order.location %></p>
+
+              <hr>
+
+
+              <strong><i class="fa fa-calendar"></i> Data Prevista </strong>
+
+              <p class="text-muted"><%= service_order.final_term %></p>
+
+              <hr>
+
+              <strong><i class="fa fa-barcode"></i> Código do Post </strong>
+
+              <p><%= service_order.pole %></p>
+
+              <hr>
+
+              <strong><i class="fa fa-file-text-o margin-r-5"></i> Descrição </strong>
+
+              <p><%= service_order.description %></p>
+
+              <hr>
+
+              <strong><i class="fa fa-file-text-o margin-r-5"></i> Resposta(s) </strong>
+              <% Notification.where(service_order_id:service_order.id).each do |s| %>
+              <hr>
+              <p><%= s.description %></p>
+              <% end %>
+              <hr>
+
+              <%= link_to 'Adicionar Técnico ao Serviço', edit_service_order_path(service_order.id, teste: service_order.id), class:"btn btn-block btn-primary", style:"color:white" %>
+              <%= link_to 'Show', service_order, class:"btn btn-block btn-warning", style:"color:white" %>
+              <%= link_to 'Edit', edit_service_order_path(service_order), class:"btn btn-block btn-info", style:"color:white" %>
+              <%= link_to 'Destroy', service_order, method: :delete, data: { confirm: 'Are you sure?' }, class:"btn btn-block btn-danger", style:"color:white" %>
+
+            </div>
+            <!-- /.box-body -->
+          </div>
+        </div>
+    <% end %>
+  <% elsif user_signed_in? %>
+  <% @service_orders = ServiceOrder.where(user_id:current_user.id) %>
+      <% @service_orders.each do |service_order| %>
+        <div class="col-md-3">
+          <div class="box box-primary">
+            <!-- /.box-header -->
+            <div class="box-body">
+              <strong><i class="fa fa-book margin-r-5"></i> Tipo de Serviço </strong>
+
+              <p class="text-muted">
+                <%= service_order.service_type %>
+              </p>
+
+              <hr>
+
+              <strong><i class="fa fa-map-marker margin-r-5"></i> Localização </strong>
+
+              <p class="text-muted"><%= service_order.location %></p>
+
+              <hr>
+
+
+              <strong><i class="fa fa-calendar"></i> Data Prevista </strong>
+
+              <p class="text-muted"><%= service_order.final_term %></p>
+
+              <hr>
+
+              <strong><i class="fa fa-barcode"></i> Código do Poste </strong>
+
+              <p><%= service_order.pole %></p>
+
+              <hr>
+
+              <strong><i class="fa fa-file-text-o margin-r-5"></i> Descrição </strong>
+
+              <p><%= service_order.description %></p>
+
+              <hr>
+
+              <strong><i class="fa fa-file-text-o margin-r-5"></i> Resposta(s) </strong>
+
+              <% Notification.where(service_order_id:service_order.id).each do |s| %>
+              <p><%= s.description %></p>
+              <hr>
+              <% end %>
+
+              <%= link_to 'Responder', new_notification_path(serviceId: service_order.id), class:"btn btn-block btn-primary", style:"color:white" %>
+              </div>
+            <!-- /.box-body -->
+          </div>
+        </div>
+    <% end %>
+  <% end %>
+    
+
+<br>
+</div>

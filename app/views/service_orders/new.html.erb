@@ -1,0 +1,63 @@
+<% @local = params[:location] %>
+<div class="box box-primary">
+  <div class="box-header with-border">
+    <h3 class="box-title">Criando Ordem de Serviço</h3>
+  </div>
+
+<%= form_with(model: @service_order, local: true) do |form| %>
+  <% if @service_order.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@service_order.errors.count, "error") %> prohibited this service_order from being saved:</h2>
+
+      <ul>
+      <% @service_order.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+
+  <div class="box-body">
+    <div class="form-group">
+    <%= form.label "Tipo de Serviço" %>
+    <%= form.select(:service_type, options_for_select([['Corte', 'Corte'], ['Leiturista', 'Leiturista'], ['Manutenção', 'Manutenção'], ['Segurança', 'Segurança'], ['Fiscalização', 'Fiscalização']]))%>
+  </div>
+
+    <div class="form-group">
+    <%= form.label :final_term %>
+    <%= form.datetime_select :final_term, class:"input-group-addon" %>
+  </div>
+
+
+<% if @local %>
+  <div class="form-group">
+    <% form.label :location %>
+    <%= form.hidden_field :location, value: @local %>
+  </div>
+<% else %>
+  <div class="form-group">
+    <%= form.label :location %>
+    <%= form.text_field :location, class:"form-control" %>
+  </div>
+<% end %>
+
+  <div class="form-group">
+    <%= form.label "Poste" %>
+    <%= form.text_field :pole, class:"form-control" %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :description %>
+    <%= form.text_area :description, class:"form-control" %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+</div>
+<% end %>
+
+</div>
+
+<%= link_to 'Back', service_orders_path %>

@@ -1,0 +1,54 @@
+<style>
+  .img_style {
+    width: 100px;
+    padding: 8px;
+    border-radius: 100%;
+  }
+</style>
+
+<h1>Usuários</h1>
+  <div style="padding: 10px; background-color: #DCDCDC;" class="box">
+    <h3 class="box-title">Gerenciamento de Usuários</h3>
+<div class="row">
+  <% @users_populacao = User.where(user_type:"População") %>
+       <% @users_populacao.each do |users| %>
+        <div class="col-lg-4">
+          <!-- Widget: user widget style 1 -->
+          <div style="border-color: #b4bac4;" class="box box-widget widget-user-2">
+            <!-- Add the bg color to the header using any of the bg-* classes -->
+            <div class="widget-user-header bg-yellow">
+
+              <div class="widget-user-image">
+                  <img style="width: 100px; padding: 8px;" class="img-circle" src="../imagens_sistema/dog.jpg" alt="User Avatar">
+              <span style="font-size: 200%; float: right; margin-right: 5px; position: absolute;" class="widget-user-username">
+
+              <% if !users.name.nil? %>
+              <%= users.name.split.first %> <%= users.name.split.last %></span>
+              <% end %>
+              </div>
+
+            </div>
+            <div class="box-footer no-padding">
+              <ul class="nav nav-stacked">
+                <li><a>E-mail<span class="pull-right badge bg-aqua"><%= users.email%></span></a></li>
+                <li><a>Telefone<span class="pull-right badge bg-blue"><%= users.phone_number%></span></a></li>
+                <li><a>CPF<span class="pull-right badge bg-blue"><%= users.cpf %></span></a></li>
+                <% @consult = Consulting.where(user_id:users.id) %> 
+                <% @consult.each do |consult| %>
+                <% if Answear.where(consulting_id:consult).size == 0 %>
+                  <% @resposta = 1 %>
+                <% end %>
+                <% end %>
+                <% if @resposta == 1 %>
+                <li><a href="../administrative/consultings?user_id=<%="#{users.id}"%>/consultings">Consultas<span class="pull-right badge bg-red"><%= Consulting.where(user_id:users.id).size %></span></a></li>
+                <% else %>
+                <li><a href="../administrative/consultings?user_id=<%="#{users.id}"%>/consultings">Consultas<span class="pull-right badge bg-green"><%= Consulting.where(user_id:users.id).size %></span></a></li>
+                <% end %>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <% @resposta = nil%>
+       <% end %>
+</div>
+</div>

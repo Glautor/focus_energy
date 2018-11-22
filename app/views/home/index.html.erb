@@ -1,0 +1,16 @@
+<h1>Página Inicial do CREACTION</h1>
+
+
+<ul>
+<li><%= link_to 'Sign In User', new_user_registration_path %></li>
+<br>
+<li><%= link_to 'Sign In Admin', new_admin_registration_path %></li>
+<br>
+</ul>
+<%if admin_signed_in? %>
+  <%= link_to('Logout', destroy_admin_session_path, method: :delete, data: { confirm: 'Tem certeza que deseja sair?'}) %>
+<% elsif user_signed_in? %>
+  <%= link_to('Logout', destroy_user_session_path, method: :delete, data: { confirm: 'Tem certeza que deseja sair?'}) %>
+<% end %>
+
+

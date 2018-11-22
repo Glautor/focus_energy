@@ -1,0 +1,36 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Service type:</strong>
+  <%= @service_order.service_type %>
+</p>
+
+<p>
+  <strong>Final term:</strong>
+  <%= @service_order.final_term %>
+</p>
+
+<p>
+  <strong>Código do Poste:</strong>
+  <%= @service_order.pole %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @service_order.description %>
+</p>
+
+<p>
+  <strong>Location:</strong>
+  <%= @service_order.location %>
+</p>
+
+<p>
+  <strong>User:</strong>
+  <% if @service_order.user %>
+    <%= @service_order.user.name %></p>
+  <% end %>
+</p>
+
+<%= link_to 'Edit', edit_service_order_path(@service_order) %> |
+<%= link_to 'Back', service_orders_path %>

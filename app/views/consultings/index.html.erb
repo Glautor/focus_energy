@@ -1,0 +1,95 @@
+<h1 class="box-title">Perguntas de <i><%= current_user.name %></i></h1>
+
+<%= link_to "Nova Consulta", new_consulting_path, class:"btn btn-block btn-primary", style:"width:120px; color:white" %>
+<p id="notice"><%= notice %></p>
+<div class="row">
+
+<% Consulting.where(user_id:current_user.id).each do |consulting| %>
+<% @answear = Answear.where(consulting_id:consulting.id) %>
+<div class="col-lg-4">
+  <% if @answear.first != nil %>
+    <div class="box box-success box-solid">
+    <div class="box-header with-border">
+
+     <h3 class="box-title"><span><b>TEMA: </b></span><%= consulting.name %></h3>
+     <div class="box-tools pull-right">
+       <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+     </div>
+         <!-- /.box-tools -->
+     </div>
+     <div style="background-color: #52bf64" class="box-header with-border">
+     <h3 class="box-title"><span><b>PERGUNTA: </b></span><%= consulting.description %></h3>     
+
+         <!-- /.box-tools -->
+     </div>
+         <!-- /.box-header -->
+      <div class="box-body">
+      <h4 class="box-title"><span><b>RESPOSTAS: </b></span></h4>
+  <% else %>
+
+
+    <div class="box box-danger box-solid">
+    <div class="box-header with-border">
+
+     <h3 class="box-title"><span><b>TEMA: </b></span><%= consulting.name %></h3>
+     <div class="box-tools pull-right">
+       <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+     </div>
+         <!-- /.box-tools -->
+     </div>
+     <div style="background-color: #f25757" class="box-header with-border">
+     <h3 class="box-title"><span><b>PERGUNTA: </b></span><%= consulting.description %></h3> 
+         <!-- /.box-tools -->
+     </div>
+         <!-- /.box-header -->
+      <div class="box-body">
+      <h4 class="box-title"><span><b>AGUARDANDO RESPOSTAS </b></span></h4>
+    <% end %>
+
+
+     
+          <div class="box box-default collapsed-box">
+            <div class="box-header with-border">
+              <h3 class="box-title"><%= consulting.location %></h3>
+
+              <div class="box-tools pull-right">
+                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-plus"></i>
+                </button>
+              </div>
+              <!-- /.box-tools -->
+            </div>
+            <!-- /.box-header -->
+            <div class="box-body" style="display: none;">
+
+
+              <% @i = 1 %>
+              <% @answear = Answear.where(consulting_id:consulting.id) %>
+              <% @answear.each do |answear| %>
+              <% if answear != nil %>
+               <p><b> 
+               <%= @i %>)
+               </b>
+               <%= answear.description %>
+                <% else %>
+                <%= "Esperando respostas" %>  
+                <% end %>
+               <% if Admin.where(id:answear.admin_id).first != nil %>
+               <span><b> (resposta de <%= Admin.where(id:answear.admin_id).first.email %>) </b></span>
+               <% end %>
+             </p>
+               <% @i=@i+1 %>
+              <% end %>
+              </div>
+                  </div>
+                  <!-- /.box -->
+                </div>
+
+
+    <!-- /.box-body -->
+   <!-- /.box -->
+<span><%= link_to 'Editar', edit_consulting_path(consulting.id), class:'btn btn-block btn-warning' %></span>
+   </div>
+</div>
+<% end %>
+</div>
+

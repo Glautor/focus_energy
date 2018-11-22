@@ -1,0 +1,63 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>User:</strong>
+  <%= @consulting.user.name %>
+</p>
+
+<%= link_to 'Edit', edit_consulting_path(@consulting) %> |
+<%= link_to 'Back', consultings_path %>
+
+
+<div class="col-lg-4">
+    <div class="box box-success box-solid">
+    <div class="box-header with-border">
+
+     <h3 class="box-title"><span><b>TEMA: </b></span><%= @consulting.name %></h3>
+     <div class="box-tools pull-right">
+       <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+     </div>
+         <!-- /.box-tools -->
+     </div>
+     <div style="background-color: #52bf64" class="box-header with-border">
+     <h3 class="box-title"><span><b>PERGUNTA: </b></span><%= @consulting.description %></h3>     
+
+         <!-- /.box-tools -->
+     </div>
+         <!-- /.box-header -->
+      <div class="box-body">
+      <h4 class="box-title"><span><b>RESPOSTAS: </b></span></h4>
+
+
+     
+          <div class="box box-default collapsed-box">
+            <div class="box-header with-border">
+              <h3 class="box-title"></h3>
+
+              <div class="box-tools pull-right">
+                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-plus"></i>
+                </button>
+              </div>
+              <!-- /.box-tools -->
+            </div>
+            <!-- /.box-header -->
+            <div class="box-body" style="display: none;">
+
+
+               <p><b> 
+               1)
+               </b>
+               Teste 123
+               <span><b> (resposta de g@g) </b></span>
+             </p>
+              </div>
+                  </div>
+                  <!-- /.box -->
+                </div>
+
+
+    <!-- /.box-body -->
+   <!-- /.box -->
+<span><a class="btn btn-block btn-warning" href="/answears/new?consultingId=85">Responder</a></span>
+   </div>
+</div>
