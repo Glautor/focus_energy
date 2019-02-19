@@ -1,24 +1,3 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
-
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+Sistema desenvolvido durante o hackathon SENDI da enel, a aplicação foi feita focada em solucionar o desafio da acumulação da negligência em relação às infrações cometidas nos postes de energia, como o acúmulo de fios acima da quantidade permitida. O sistema ficava encarregado de intermediar a relação entre os clientes da enel, os técnicos da empresa e os seus gestores, buscando promover uma integração que permitiria ao usuário notificar possíveis infrações e, que por meio de um processo interno, condensaria as informações até que os gestores pudessem permitir o encaminhamento do técnico adequado para a resolução de cada infração.
